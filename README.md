@@ -1,0 +1,38 @@
+# The New Black AI — Claude Code skill
+
+A [Claude Code](https://claude.com/claude-code) skill that teaches Claude
+how to integrate [The New Black AI](https://thenewblack.ai)'s fashion
+generation API into your codebase: generate fashion images and videos,
+poll results, manage credits, publish to Shopify product pages.
+
+## Install
+
+In your project (the skill travels with the repo):
+
+```bash
+git clone https://github.com/newblackai/claude-skill .claude/skills/the-new-black-api
+```
+
+Or for every project on your machine:
+
+```bash
+git clone https://github.com/newblackai/claude-skill ~/.claude/skills/the-new-black-api
+```
+
+Then just ask Claude Code — "connect my app to The New Black AI",
+"generate product-on-model images for my catalogue", "publish this
+visual to my Shopify product page" — and it knows the contract.
+
+You'll need an API key (`tnb_live_…`), created in your
+[profile's API tab](https://thenewblack.ai/profile?tab=api). Put it in
+`TNB_API_KEY`; the skill insists on that.
+
+## Staying current
+
+The skill deliberately does NOT embed the workflow catalogue: it
+instructs Claude to read `GET /v1/workflows` — the live contract — before
+writing workflow calls. New workflows and version bumps (`-v2`…) are
+picked up automatically, with nothing to update here.
+
+Full documentation:
+[thenewblack.ai/clothing_fashion_api_integrations](https://thenewblack.ai/clothing_fashion_api_integrations)
