@@ -1,6 +1,6 @@
 ---
 name: thenewblack
-description: Give any AI agent or codebase the fashion studio of The New Black AI (thenewblack.ai) — 47 workflows that generate and edit fashion images and videos (design, product-to-model, virtual try-on, fabric, sketch, video, HD), read the account's creations, tech packs and moodboards, publish to Shopify and social accounts, and talk to the account's own AI agents. Use when the user wants to connect a system, store, script or agent to The New Black AI, mentions the TNB API, MCP connector, tnb_live keys, or AI fashion generation by API.
+description: Give any AI agent or codebase the fashion studio of The New Black AI (thenewblack.ai) — 47 workflows that generate and edit fashion images and videos (design, product-to-model, virtual try-on, fabric, sketch, video, HD), read and write the account's creations and tech packs, publish to Shopify and social accounts, and talk to the account's own AI agents — by REST API, by the `tnb` CLI (npx @thenewblack/cli) or by MCP. Use when the user wants to connect a system, store, script, folder of photos or agent to The New Black AI, mentions the TNB API, the tnb CLI, MCP connector, tnb_live keys, or AI fashion generation by API.
 ---
 
 # The New Black AI — for agents and integrations
@@ -11,7 +11,12 @@ One platform, three doors, one contract:
 - **MCP connector** — `https://mcp.thenewblack.ai/mcp`: the same catalogue as tools, with an
   upload card, for Claude (web, Desktop, Code), Cursor and any MCP client. Connect it with
   the account's API key; it builds its tool list from `/v1/catalog` live.
-- **This skill** — how to orchestrate either of them correctly.
+- **CLI** — `npx @thenewblack/cli` (command `tnb`): the same API as a program, for a project of
+  code, a script, a cron. One command per workflow generated from the live catalogue, local files
+  uploaded for you, `--wait` and `--out`. **In a conversation, add the connector; in a project of
+  code, install the CLI** — and read `tnb --help`, then `tnb generate <key> --help`: that help is
+  the live contract.
+- **This skill** — how to orchestrate any of them correctly.
 
 ## Rules that keep integrations correct
 
@@ -52,8 +57,12 @@ One platform, three doors, one contract:
 | `GET /v1/credits` | read | `{ "credits": 142.5 }` |
 | `GET /v1/media` | read | The account's recent creations — to reuse one as a reference or publish it |
 | `GET /v1/elements` | read | The account's own pot: starred creations, starred presets, uploads |
+| `POST /v1/media/upload` | generate | multipart `file` (JPG/PNG/WebP, 15 MB) + optional `project` → `{ media_id, url }`: a local picture of yours, hosted by us, usable in any image parameter |
+| `GET /v1/account` · `GET /v1/ledger` · `GET /v1/brand-dna[/{id}]` | read | The account in one reading (credits, team, projects, library, tech packs, Visual DNA); what it spent; the Visual DNA profiles and their analysis |
 | `GET /v1/projects` | read | The account's projects (collections), the filter every listing takes (`?project=`) |
-| `GET /v1/techpacks` · `GET /v1/techpacks/{id}/pdf` | read | Tech packs, and a PDF export returned as a URL |
+| `GET /v1/techpacks` · `GET /v1/techpacks/{id}` · `GET /v1/techpacks/{id}/pdf` | read | Tech packs; one pack whole (pages, sections with id, kind, data); a PDF export returned as a URL |
+| `PATCH /v1/techpacks/{id}` · `POST …/{id}/sections` · `PUT …/{id}/sections/{sectionId}` | generate | Rename; add a section (`{ page_id, kind, at_index? }`); replace a section's data whole (read first, write back the same keys; the canvas is not writable) |
+| `POST /v1/techpacks/from-photos` | generate | Start with AI: `{ images, back?, description?, product?, size_range?, unit?, sketch?, project_id? }` → the new pack's id (1 credit + 1 per sketch, up to three minutes; the BOM stays empty) |
 | `GET /v1/moodboards` · `GET /v1/moodboards/{id}/pdf` | read | Moodboards, same shape |
 | `GET /v1/shopify/products` | read | Connected store's catalogue (`{ store: null, products: [] }` when none — an answer, not an error) |
 | `POST /v1/shopify/publish` | publish | A creation onto a product page (images and videos) |
@@ -62,6 +71,8 @@ One platform, three doors, one contract:
 | `GET /v1/agents` | agents | The account's AI agents: name, role, status, liberties, busy or waiting for an answer |
 | `POST /v1/agents/{id}/messages` · `GET …/messages` | agents | Talk to an agent in its one thread, read the thread back with typed results (media, post, techpack, file) |
 | `POST /v1/agents/{id}/stop` | agents | Stop the running task; what was done stays |
+| `GET`/`POST /v1/agents/{id}/schedules` · `DELETE …/{scheduleId}` | agents | The agent's calendar: what it does later or again (`{ request, kind: single\|recurring, time, date? \| every?, day_of_week?, day_of_month?, may_publish? }`); cancel a line |
+| `GET /v1/files` · `GET`/`PATCH /v1/files/{id or path}` | agents | The account's Files as the agents see them; one page of a file (`?page=&sheet=&picture=`; pdf and pictures cost a fraction of a credit); its one-line description |
 
 `POST /v1/generate` body: `workflow` (versioned name), the **named** image parameters, `prompt`
 (if the workflow takes one), optional `fields` (the catalogue names them), `variant`, `tier`
@@ -94,9 +105,28 @@ Created in the account's Profile → API tab (max 3), scoped: `read`, `generate`
 
 ## Choosing the door
 
-- A script, a backend, a cron: the REST API, with `webhook_url` when you can receive one.
-- A Claude / Cursor / MCP session that should *use* the studio: the MCP connector.
-- An agent that must *discover* the platform before its human has a key: `GET /v1/catalog`.
+- A project of code, a script, a cron, a CI job, an agent working in a folder: the **CLI**
+  (`npx @thenewblack/cli`) — nothing to write, local files handled, the help is the live contract.
+- A backend that receives callbacks: the REST API, with `webhook_url`.
+- A Claude / Cursor / MCP session that should *use* the studio in conversation: the MCP connector.
+- An agent that must *discover* the platform before its human has a key: `GET /v1/catalog` or
+  `tnb workflows` (no key needed).
+
+## The CLI in one screen
+
+```sh
+npx @thenewblack/cli --help                    # or: npm install -g @thenewblack/cli
+tnb login                                      # keeps the key; or export TNB_API_KEY=tnb_live_…
+tnb workflows                                  # every workflow with prices, read live
+tnb generate virtual_try_on --help             # the flags of one workflow, read live
+tnb generate virtual_try_on --product_images dress.jpg --model_image model.jpg --ratio 4:5 --wait --out ./renders/
+tnb status <generation_id> --wait --out ./renders/
+tnb upload a.jpg b.jpg · tnb credits · tnb media · tnb techpack <id> · tnb agent send <id> "…"
+```
+
+JSON on stdout (`--pretty` to indent), the platform's own error on stderr, exit `0` done / `1`
+refused / `2` wrong command line. Results live 48 hours: always `--out`. A folder of photos is a
+loop over `tnb generate … --wait --out ./renders/` — one line per file, readable names.
 
 For working code in curl, Node and Python — the generate-poll-save loop, a video with its
 per-second price, the Shopify and social publish flows, a conversation with an agent — read

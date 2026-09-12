@@ -7,7 +7,13 @@ poll results, manage credits, publish to Shopify product pages.
 
 ## Install
 
-In your project (the skill travels with the repo):
+In one command, for Claude Code, Cursor or Codex:
+
+```bash
+npx skills add newblackai/claude-skill --skill thenewblack
+```
+
+Or by hand, in your project (the skill travels with the repo):
 
 ```bash
 git clone https://github.com/newblackai/claude-skill .claude/skills/the-new-black-api
@@ -33,6 +39,9 @@ The skill deliberately does NOT embed the workflow catalogue: it
 instructs Claude to read `GET /v1/workflows` — the live contract — before
 writing workflow calls. New workflows and version bumps (`-v2`…) are
 picked up automatically, with nothing to update here.
+
+The CLI the skill points to: [`@thenewblack/cli`](https://www.npmjs.com/package/@thenewblack/cli) —
+`npx @thenewblack/cli --help`.
 
 Full documentation:
 [thenewblack.ai/clothing_fashion_api_integrations](https://thenewblack.ai/clothing_fashion_api_integrations)

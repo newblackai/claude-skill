@@ -170,3 +170,32 @@ curl -s -X POST https://thenewblack.ai/api/v1/agents/<id>/messages \
 curl -s https://thenewblack.ai/api/v1/agents/<id>/messages -H "Authorization: Bearer $TNB_API_KEY"
 # → the thread, each of the agent's messages with typed results (media, post, techpack, file)
 ```
+
+## The CLI — a folder of photos, without writing a script
+
+```sh
+npx @thenewblack/cli login            # once; or export TNB_API_KEY=tnb_live_…
+tnb generate product_to_model --help  # the flags, read live from the catalogue
+
+# every product photo of a folder on an AI model, saved with a readable name
+for f in ./products/*.jpg; do
+  tnb generate product_to_model --product_images "$f" \
+    --prompt "AI model wearing the product, studio light, neutral background" \
+    --ratio 4:5 --wait --out ./renders/
+done
+# → renders/robe-verte-product_to_model.webp beside products/robe-verte.jpg
+
+# a virtual try-on with two local pictures (uploaded once, remembered)
+tnb generate virtual_try_on --product_images dress.jpg --model_image model.jpg --seg_camera slightly_above --wait --out ./renders/
+
+# a tech pack from photos, then read it
+tnb techpack from-photos front.jpg --back back.jpg --sketch front --size-range XS-XL --unit cm
+tnb techpack <id> --pretty
+
+# talk to the account's agent
+tnb agent send <agent_id> "Make three on-model visuals of the linen shirt" --media <media_id>
+tnb agent thread <agent_id> --since 2026-09-12T09:00:00Z
+```
+
+Every command prints one line of JSON; errors are the platform's own `{ "error": { "code", "message" } }`
+on stderr with exit code 1; a wrong command line exits 2.
