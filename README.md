@@ -36,3 +36,11 @@ picked up automatically, with nothing to update here.
 
 Full documentation:
 [thenewblack.ai/clothing_fashion_api_integrations](https://thenewblack.ai/clothing_fashion_api_integrations)
+
+## Install in one command
+
+```bash
+npx skills add newblackai/claude-skill
+```
+
+Works with Claude Code, Cursor, Codex, OpenCode and every agent the `skills` CLI supports. The skill teaches the agent the REST API and the MCP connector (`https://mcp.thenewblack.ai/mcp`); it never embeds the workflow catalogue — the agent reads it live from `GET /v1/catalog`, so new workflows need no skill update.

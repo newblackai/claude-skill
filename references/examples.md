@@ -117,3 +117,56 @@ Publish rules worth coding around: the media must be a creation of the
 key's account (`404 media_not_found` otherwise), one product page per
 creation (`409 already_published` on a second push — unpublishing
 happens in the app), videos up to 96 MB.
+
+## A video, priced by the second
+
+```bash
+# The catalogue says which durations a video workflow offers and its price per second.
+curl -s -X POST https://thenewblack.ai/api/v1/generate \
+  -H "Authorization: Bearer $TNB_API_KEY" -H "Content-Type: application/json" \
+  -d '{
+    "workflow": "ugc_video-v1",
+    "product_image": "https://example.com/bag.jpg",
+    "fields": { "script": "I have been wearing this every day this week", "presenter": "a friendly presenter in their twenties", "scene": "White Background Studio" },
+    "duration": "10"
+  }'
+# Poll as for an image; videos take 1–5 minutes. The result carries the mp4 url and a poster.
+```
+
+## A video worked on (video → video)
+
+```bash
+# Remove Video Background, Reframe Video, Change Video Background, Edit Outfit in Video, Swap Model in Video:
+# the clip you send is the input, billed by its own length, read from the file before the job starts.
+curl -s -X POST https://thenewblack.ai/api/v1/generate \
+  -H "Authorization: Bearer $TNB_API_KEY" -H "Content-Type: application/json" \
+  -d '{ "workflow": "reframe_video-v1", "source_video": "https://example.com/clip.mp4", "ratio": "9:16" }'
+```
+
+## Publish to a social account
+
+```bash
+curl -s https://thenewblack.ai/api/v1/publish/accounts -H "Authorization: Bearer $TNB_API_KEY"
+# → connected accounts with their connection_id and the placements each accepts (feed, reel, story…)
+
+curl -s -X POST https://thenewblack.ai/api/v1/publish \
+  -H "Authorization: Bearer $TNB_API_KEY" -H "Content-Type: application/json" \
+  -d '{ "connection_id": "…", "media_id": "3f1c9a6e-…", "placement": "reel", "caption": "New season." }'
+# → { "id": "…", "status": "scheduled" }   then   GET /v1/publish/{id}  until posted (permalink) or failed (reason)
+```
+
+## Talk to the account's AI agent
+
+```bash
+curl -s https://thenewblack.ai/api/v1/agents -H "Authorization: Bearer $TNB_API_KEY"
+# → [{ "id": "…", "name": "Sam", "status": "active", "role": {...}, "busy": false, ... }]
+
+curl -s -X POST https://thenewblack.ai/api/v1/agents/<id>/messages \
+  -H "Authorization: Bearer $TNB_API_KEY" -H "Content-Type: application/json" \
+  -H "Idempotency-Key: order-8812" \
+  -d '{ "message": "Make three on-model visuals of this product and publish them to Instagram.", "media_ids": ["3f1c9a6e-…"] }'
+# → 202 { "task_id": "…" } — or, while the agent is busy, { "status": "working", "task_id", "since" }: wait and send again
+# The agent works in its one thread, as it would for a person, with the same tools and liberties.
+curl -s https://thenewblack.ai/api/v1/agents/<id>/messages -H "Authorization: Bearer $TNB_API_KEY"
+# → the thread, each of the agent's messages with typed results (media, post, techpack, file)
+```
