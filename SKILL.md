@@ -47,8 +47,14 @@ One platform, three doors, one contract:
 
 ## The surface
 
+**The contract is `GET https://thenewblack.ai/api/v1/openapi.json`** — public, OpenAPI 3.1, generated at
+the instant of the call: every fixed route with its parameters, responses and error codes, and every
+workflow as a body schema of `POST /v1/generate` (discriminated by `workflow`). Read it before writing
+code; point a generator or an SDK builder at it. The table below is a reading aid, not the source.
+
 | Endpoint | Scope | Purpose |
 |---|---|---|
+| `GET /v1/openapi.json` | public | The whole API described (OpenAPI 3.1), fixed routes and workflows alike — the source of this table |
 | `GET /v1/catalog` | public | Every workflow: versioned name (`key-vN`), named image params, fields, variants, formats, durations, prices |
 | `GET /v1/catalog/presets` | public | Stock template library (models, products, backgrounds, fabrics, sketches) usable as references |
 | `GET /v1/workflows` | read | The same catalogue, keyed (what this key's plan can run) |
@@ -66,7 +72,7 @@ One platform, three doors, one contract:
 | `GET /v1/moodboards` · `GET /v1/moodboards/{id}/pdf` | read | Moodboards, same shape |
 | `GET /v1/shopify/products` | read | Connected store's catalogue (`{ store: null, products: [] }` when none — an answer, not an error) |
 | `POST /v1/shopify/publish` | publish | A creation onto a product page (images and videos) |
-| `GET /v1/publish/accounts` | read | Connected social accounts (Instagram, TikTok, X, Pinterest, YouTube) and the placements each accepts |
+| `GET /v1/publish/accounts` | publish | Connected social accounts (Instagram, TikTok, X, Pinterest, YouTube) and the placements each accepts |
 | `POST /v1/publish` · `GET /v1/publish/{id}` | publish | Post a creation to a connected account; read its state (scheduled, posted with permalink, failed) |
 | `GET /v1/agents` | agents | The account's AI agents: name, role, status, liberties, busy or waiting for an answer |
 | `POST /v1/agents/{id}/messages` · `GET …/messages` | agents | Talk to an agent in its one thread, read the thread back with typed results (media, post, techpack, file) |
