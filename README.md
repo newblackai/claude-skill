@@ -53,3 +53,17 @@ npx skills add newblackai/claude-skill
 ```
 
 Works with Claude Code, Cursor, Codex, OpenCode and every agent the `skills` CLI supports. The skill teaches the agent the REST API and the MCP connector (`https://mcp.thenewblack.ai/mcp`); it never embeds the workflow catalogue — the agent reads it live from `GET /v1/catalog`, so new workflows need no skill update.
+
+## Keeping the table true
+
+The surface table in `SKILL.md` is typed by hand (a table needs words the
+OpenAPI document does not carry) and checked against the live API:
+
+```
+node scripts/check-openapi.mjs
+```
+
+It names any route the table cites that the API does not have, and any
+keyed operation of the API the table does not cite. Run it before every
+push; the API's own repository runs the same check on its doc page and
+its CLI.
