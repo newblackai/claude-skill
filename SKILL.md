@@ -31,7 +31,8 @@ One platform, three doors, one contract:
 3. **Generation is asynchronous.** `POST /v1/generate` answers `202` with a `generation_id`;
    the result is NOT in that response. Poll `GET /v1/generations/{id}` every 3–5 s (images take
    ~10–60 s, videos 1–5 min), or pass `webhook_url` and receive the outcome as a POST.
-4. **Results live 48 hours** on our URL. Copy the file to the user's own storage as soon as it
+4. **Results live 48 hours** on our URL, and this is enforced: past that, `GET /v1/generations/{id}`
+   answers `expired: true` with a null result. Copy the file to the user's own storage as soon as it
    succeeds; never store our URL as permanent. (Publishing to Shopify or a social account through
    the API copies it for you.)
 5. **Credits are debited at submission and refunded on failure.** `402 insufficient_credits`
