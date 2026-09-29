@@ -83,7 +83,9 @@ code; point a generator or an SDK builder at it. The table below is a reading ai
 
 `POST /v1/generate` body: `workflow` (versioned name), the **named** image parameters, `prompt`
 (if the workflow takes one), optional `fields` (the catalogue names them), `variant`, `tier`
-(`standard` | `pro`), `ratio` or `duration` where offered, `webhook_url`.
+(`standard` | `pro` | `ultra` — `ultra` only where the catalogue prices one: the best model at its
+largest output, a picture in 4K from the Pro plan, a video in 1080p), `ratio` or `duration` where
+offered, `webhook_url`.
 
 Shopify publish: `product_id` (gid or bare number) + `media_id` (a generation's id) or `url`
 (a creation's own file url). One product page per creation: a second publish answers
