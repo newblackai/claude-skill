@@ -155,20 +155,17 @@ curl -s -X POST https://thenewblack.ai/api/v1/publish \
 # → { "id": "…", "status": "scheduled" }   then   GET /v1/publish/{id}  until posted (permalink) or failed (reason)
 ```
 
-## Talk to the account's AI agent
+## Talk to Mila, the account's AI agent
 
 ```bash
-curl -s https://thenewblack.ai/api/v1/agents -H "Authorization: Bearer $TNB_API_KEY"
-# → [{ "id": "…", "name": "Sam", "status": "active", "role": {...}, "busy": false, ... }]
-
-curl -s -X POST https://thenewblack.ai/api/v1/agents/<id>/messages \
+curl -s -X POST https://thenewblack.ai/api/v1/mila/messages \
   -H "Authorization: Bearer $TNB_API_KEY" -H "Content-Type: application/json" \
   -H "Idempotency-Key: order-8812" \
   -d '{ "message": "Make three on-model visuals of this product and publish them to Instagram.", "media_ids": ["3f1c9a6e-…"] }'
-# → 202 { "task_id": "…" } — or, while the agent is busy, { "status": "working", "task_id", "since" }: wait and send again
-# The agent works in its one thread, as it would for a person, with the same tools and liberties.
-curl -s https://thenewblack.ai/api/v1/agents/<id>/messages -H "Authorization: Bearer $TNB_API_KEY"
-# → the thread, each of the agent's messages with typed results (media, post, techpack, file)
+# → 202 { "task_id": "…" } — or, while she is busy, { "status": "working", "task_id", "since" }: wait and send again
+# Mila works in her one thread, as she would for a person, with the same tools and liberties.
+curl -s "https://thenewblack.ai/api/v1/mila/messages?since=<iso date>" -H "Authorization: Bearer $TNB_API_KEY"
+# → the thread, each of her messages with typed results (media, post, techpack, file)
 ```
 
 ## The CLI — a folder of photos, without writing a script
@@ -192,9 +189,9 @@ tnb generate virtual_try_on --product_images dress.jpg --model_image model.jpg -
 tnb techpack from-photos front.jpg --back back.jpg --sketch front --size-range XS-XL --unit cm
 tnb techpack <id> --pretty
 
-# talk to the account's agent
-tnb agent send <agent_id> "Make three on-model visuals of the linen shirt" --media <media_id>
-tnb agent thread <agent_id> --since 2026-09-12T09:00:00Z
+# talk to Mila, the account's AI agent
+tnb mila send "Make three on-model visuals of the linen shirt" --media <media_id>
+tnb mila thread --since 2026-09-12T09:00:00Z
 ```
 
 Every command prints one line of JSON; errors are the platform's own `{ "error": { "code", "message" } }`

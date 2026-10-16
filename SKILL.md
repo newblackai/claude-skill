@@ -42,8 +42,8 @@ One platform, three doors, one contract:
 6. **Send image parameters by NAME**, exactly as the catalogue declares them (`product_image`,
    `model_image`, `front_image`…). Positional arrays are refused. Validation happens before any
    debit: a wrong parameter costs nothing and answers with the contract's words.
-7. **Idempotency when you talk to an agent**: send `Idempotency-Key: <your id>` on
-   `POST /v1/agents/{id}/messages`; a retry with the same key returns the first answer instead
+7. **Idempotency when you talk to Mila**: send `Idempotency-Key: <your id>` on
+   `POST /v1/mila/messages`; a retry with the same key returns the first answer instead
    of filing the request twice. Elsewhere, keep your own record of the `generation_id` or post id.
 
 ## The surface
@@ -75,11 +75,10 @@ code; point a generator or an SDK builder at it. The table below is a reading ai
 | `POST /v1/shopify/publish` | publish | A creation onto a product page (images and videos) |
 | `GET /v1/publish/accounts` | publish | Connected social accounts (Instagram, TikTok, X, Pinterest, YouTube) and the placements each accepts |
 | `POST /v1/publish` · `GET /v1/publish/{id}` | publish | Post a creation to a connected account; read its state (scheduled, posted with permalink, failed) |
-| `GET /v1/agents` | agents | The account's AI agents: name, role, status, liberties, busy or waiting for an answer |
-| `POST /v1/agents/{id}/messages` · `GET …/messages` | agents | Talk to an agent in its one thread, read the thread back with typed results (media, post, techpack, file) |
-| `POST /v1/agents/{id}/stop` | agents | Stop the running task; what was done stays |
-| `GET`/`POST /v1/agents/{id}/schedules` · `DELETE …/{scheduleId}` | agents | The agent's calendar: what it does later or again (`{ request, kind: single\|recurring, time, date? \| every?, day_of_week?, day_of_month?, may_publish? }`); cancel a line |
-| `GET /v1/files` · `GET`/`PATCH /v1/files/{id or path}` | agents | The account's Files as the agents see them; one page of a file (`?page=&sheet=&picture=`; pdf and pictures cost a fraction of a credit); its one-line description |
+| `POST /v1/mila/messages` · `GET …/messages` | agents | Talk to Mila, the account's AI agent, in her one thread; read it back with typed results (media, post, techpack, file) |
+| `GET /v1/mila` · `POST /v1/mila/stop` | agents | Her state (busy, waiting for an answer, what she may do alone); stop her running task |
+| `GET`/`POST /v1/mila/schedules` · `DELETE …/{scheduleId}` | agents | Her calendar: what she does later or again (`{ request, kind: single\|recurring, time, date? \| every?, day_of_week?, day_of_month?, may_publish? }`); cancel a line |
+| `GET /v1/files` · `GET`/`PATCH /v1/files/{id or path}` | agents | The account's Files as Mila sees them; one page of a file (`?page=&sheet=&picture=`; pdf and pictures cost a fraction of a credit); its one-line description |
 
 `POST /v1/generate` body: `workflow` (versioned name), the **named** image parameters, `prompt`
 (if the workflow takes one), optional `fields` (the catalogue names them), `variant`, `tier`
@@ -91,12 +90,12 @@ Shopify publish: `product_id` (gid or bare number) + `media_id` (a generation's 
 (a creation's own file url). One product page per creation: a second publish answers
 `409 already_published`. Needs the `publish` scope and an active plan.
 
-Agents: an agent is hired in the app (Business plan and above). Through the API you speak to
-it exactly as the chat does — same tools, same liberties, nothing widened by a key. Body:
-`{ "message": "…", "media_ids": [...] }` (media_ids = the account's own creations). While the
-agent is working, a new message answers `{ "status": "working", "task_id", "since" }` — wait,
-then send again; a paused agent answers `409 paused`. A question the agent asks you appears in
-the thread; answer it with another POST.
+Mila: every account has her, its one AI agent; no id to pass. Through the API you speak to her
+exactly as the chat does — same tools, same liberties, nothing widened by a key. Body:
+`{ "message": "…", "media_ids": [...] }` (media_ids = the account's own creations). While she
+works, a new message answers `{ "status": "working", "task_id", "since" }` — wait, then send
+again; paused, she answers `409 paused`. A question she asks you appears in the thread; answer
+it with another POST.
 
 ## Errors
 
@@ -130,7 +129,7 @@ tnb workflows                                  # every workflow with prices, rea
 tnb generate virtual_try_on --help             # the flags of one workflow, read live
 tnb generate virtual_try_on --product_images dress.jpg --model_image model.jpg --ratio 4:5 --wait --out ./renders/
 tnb status <generation_id> --wait --out ./renders/
-tnb upload a.jpg b.jpg · tnb credits · tnb media · tnb techpack <id> · tnb agent send <id> "…"
+tnb upload a.jpg b.jpg · tnb credits · tnb media · tnb techpack <id> · tnb mila send "…"
 ```
 
 JSON on stdout (`--pretty` to indent), the platform's own error on stderr, exit `0` done / `1`
