@@ -65,7 +65,7 @@ code; point a generator or an SDK builder at it. The table below is a reading ai
 | `GET /v1/media` | read | The account's recent creations — to reuse one as a reference or publish it |
 | `GET /v1/elements` | read | The account's own pot: starred creations, starred presets, uploads |
 | `POST /v1/media/upload` | generate | multipart `file` (JPG/PNG/WebP, 15 MB) + optional `project` → `{ media_id, url }`: a local picture of yours, hosted by us, usable in any image parameter |
-| `GET /v1/account` · `GET /v1/ledger` · `GET /v1/brand-dna[/{id}]` | read | The account in one reading (credits, team, projects, library, tech packs, Visual DNA); what it spent; the Visual DNA profiles and their analysis |
+| `GET /v1/account` · `GET /v1/ledger` · `GET /v1/account/invoices` · `GET /v1/brand-dna[/{id}]` | read | The account in one reading (credits, team, projects, library, tech packs, Visual DNA); what it spent; its invoices (plans and packs, with page and PDF, `?limit=&starting_after=`); the Visual DNA profiles and their analysis |
 | `GET /v1/projects` | read | The account's projects (collections), the filter every listing takes (`?project=`) |
 | `GET /v1/techpacks` · `GET /v1/techpacks/{id}` · `GET /v1/techpacks/{id}/pdf` | read | Tech packs; one pack whole (pages, sections with id, kind, data); a PDF export returned as a URL |
 | `PATCH /v1/techpacks/{id}` · `POST …/{id}/sections` · `PUT …/{id}/sections/{sectionId}` | generate | Rename; add a section (`{ page_id, kind, at_index? }`); replace a section's data whole (read first, write back the same keys; the canvas is not writable) |
@@ -129,7 +129,7 @@ tnb workflows                                  # every workflow with prices, rea
 tnb generate virtual_try_on --help             # the flags of one workflow, read live
 tnb generate virtual_try_on --product_images dress.jpg --model_image model.jpg --ratio 4:5 --wait --out ./renders/
 tnb status <generation_id> --wait --out ./renders/
-tnb upload a.jpg b.jpg · tnb credits · tnb media · tnb techpack <id> · tnb mila send "…"
+tnb upload a.jpg b.jpg · tnb credits · tnb invoices · tnb media · tnb techpack <id> · tnb mila send "…"
 ```
 
 JSON on stdout (`--pretty` to indent), the platform's own error on stderr, exit `0` done / `1`
