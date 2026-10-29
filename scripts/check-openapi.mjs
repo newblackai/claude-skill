@@ -2,7 +2,8 @@
 /* THE TABLE IN SKILL.md CANNOT DRIFT FROM THE API (2026-09-20).
    The skill's surface table is typed by hand, because a table needs the
    words an OpenAPI document does not carry. What it must never do is
-   name a route the API does not have, or miss a keyed one the API has.
+   name a route the API does not have, or miss a keyed one the API has,
+   or give a route another scope than the one the API demands.
    This script reads the live document and compares. Run it before
    pushing; the site's own test does the same for its doc page and CLI.
 
@@ -33,9 +34,13 @@ for (const [path, ops] of Object.entries(doc.paths ?? {})) {
    previous path, `[/{id}]` an optional segment, `GET`/`POST` a pair. */
 const md = readFileSync(join(here, "..", "SKILL.md"), "utf8");
 const cited = new Set();
+/* THE RIGHTS TOO (Audit H-509, 2026-10-29): each row's Scope cell is the scope the API demands of every route it
+   names — a row saying `read` over a `generate` route sends a reader to a 403. */
+const rowScope = new Map();
 for (const line of md.split("\n")) {
   if (!line.startsWith("|")) continue;
   const cell = line.split("|")[1] ?? "";
+  const scopeCell = (line.split("|")[2] ?? "").trim();
   let last = null;
   for (const m of cell.matchAll(/`((?:(?:GET|POST|PUT|PATCH|DELETE)`?(?:\/`)?`?\s*)+)(…[^`]*|\/v1[^`]*)`/g)) {
     const methods = [...m[1].matchAll(/GET|POST|PUT|PATCH|DELETE/g)].map((x) => x[0]);
@@ -51,14 +56,20 @@ for (const line of md.split("\n")) {
       path = candidates.find((c) => methods.some((method) => api.has(`${method} ${shape(c.replace(/\{id or path\}/, "{}"))}`))) ?? candidates[0];
     }
     const variants = path.includes("[") ? [path.replace(/\[[^\]]*\]/, ""), path.replace(/[\[\]]/g, "")] : [path];
-    for (const v of variants) for (const method of methods) cited.add(`${method} ${shape(v.replace(/\{id or path\}/, "{}").replace(/\?.*$/, ""))}`);
+    for (const v of variants) for (const method of methods) {
+      const k = `${method} ${shape(v.replace(/\{id or path\}/, "{}").replace(/\?.*$/, ""))}`;
+      cited.add(k);
+      if (/^(public|read|generate|publish|agents)$/.test(scopeCell)) rowScope.set(k, scopeCell);
+    }
     last = variants[variants.length - 1];
   }
 }
 
 const unknown = [...cited].filter((k) => !api.has(k) && !k.endsWith("/openapi.json"));
 const missing = [...api.entries()].filter(([k, scope]) => scope !== "public" && !cited.has(k) && k !== "POST /generate").map(([k]) => k);
+const wrongScope = [...rowScope.entries()].filter(([k, sc]) => api.has(k) && api.get(k) !== "keyed" && api.get(k) !== sc).map(([k, sc]) => `${k}: SKILL.md says ${sc}, the API demands ${api.get(k)}`);
 if (unknown.length) console.log("Named in SKILL.md, not in the API:\n  " + unknown.join("\n  "));
+if (wrongScope.length) console.log("Scope in SKILL.md differs from the API:\n  " + wrongScope.join("\n  "));
 if (missing.length) console.log("Keyed in the API, not in SKILL.md:\n  " + missing.join("\n  "));
-if (!unknown.length && !missing.length) console.log(`SKILL.md matches ${api.size} operations of ${url}`);
-process.exit(unknown.length || missing.length ? 1 : 0);
+if (!unknown.length && !missing.length && !wrongScope.length) console.log(`SKILL.md matches ${api.size} operations of ${url}, scopes included`);
+process.exit(unknown.length || missing.length || wrongScope.length ? 1 : 0);
