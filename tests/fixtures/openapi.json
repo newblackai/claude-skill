@@ -14,8 +14,8 @@
    "url": "https://thenewblack.ai/terms_of_service"
   },
   "termsOfService": "https://thenewblack.ai/terms_of_service",
-  "x-workflows-revision": "0feb20dd77845ab5",
-  "x-openapi-revision": "6dcef39d5a781591"
+  "x-workflows-revision": "870852d33bdc5fb6",
+  "x-openapi-revision": "80cf958128362350"
  },
  "servers": [
   {
@@ -209,6 +209,15 @@
                 "conditional": {
                  "type": "boolean",
                  "description": "Shown by a choice of the fields: required only while that choice shows it — the platform judges."
+                },
+                "media": {
+                 "type": "string",
+                 "enum": [
+                  "image",
+                  "video",
+                  "any"
+                 ],
+                 "description": "What the place takes: a picture, a clip, or either — as the workflow declares it."
                 }
                },
                "required": [
@@ -216,7 +225,8 @@
                 "label",
                 "required",
                 "multiple",
-                "max"
+                "max",
+                "media"
                ],
                "additionalProperties": false
               }
@@ -581,6 +591,15 @@
                 "conditional": {
                  "type": "boolean",
                  "description": "Shown by a choice of the fields: required only while that choice shows it — the platform judges."
+                },
+                "media": {
+                 "type": "string",
+                 "enum": [
+                  "image",
+                  "video",
+                  "any"
+                 ],
+                 "description": "What the place takes: a picture, a clip, or either — as the workflow declares it."
                 }
                },
                "required": [
@@ -588,7 +607,8 @@
                 "label",
                 "required",
                 "multiple",
-                "max"
+                "max",
+                "media"
                ],
                "additionalProperties": false
               }
@@ -869,10 +889,10 @@
           "$ref": "#/components/schemas/Generate_reimagine_scene_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_motion_design_v1"
+          "$ref": "#/components/schemas/Generate_edit_video_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_edit_video_v1"
+          "$ref": "#/components/schemas/Generate_motion_design_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_model_walk_v1"
@@ -881,10 +901,10 @@
           "$ref": "#/components/schemas/Generate_product_360_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_swap_models_v1"
+          "$ref": "#/components/schemas/Generate_model_360_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_model_360_v1"
+          "$ref": "#/components/schemas/Generate_swap_models_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_face_swap_v1"
@@ -902,10 +922,10 @@
           "$ref": "#/components/schemas/Generate_snap_freeze_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_image_to_flat_lay_v1"
+          "$ref": "#/components/schemas/Generate_ugc_video_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_ugc_video_v1"
+          "$ref": "#/components/schemas/Generate_image_to_flat_lay_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_swap_fabrics_v1"
@@ -974,16 +994,16 @@
           "$ref": "#/components/schemas/Generate_editorial_video_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_remove_video_background_v1"
-         },
-         {
           "$ref": "#/components/schemas/Generate_outfit_drop_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_passerby_transition_v1"
+          "$ref": "#/components/schemas/Generate_remove_video_background_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_reframe_video_v1"
+         },
+         {
+          "$ref": "#/components/schemas/Generate_passerby_transition_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_crosswalk_look_switch_v1"
@@ -995,10 +1015,10 @@
           "$ref": "#/components/schemas/Generate_change_video_outfit_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_hanger_layering_v1"
+          "$ref": "#/components/schemas/Generate_swap_video_model_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_swap_video_model_v1"
+          "$ref": "#/components/schemas/Generate_hanger_layering_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_window_walkby_v1"
@@ -1083,19 +1103,19 @@
           "enhance_photo_to_hd-v1": "#/components/schemas/Generate_enhance_photo_to_hd_v1",
           "retouch-v1": "#/components/schemas/Generate_retouch_v1",
           "reimagine_scene-v1": "#/components/schemas/Generate_reimagine_scene_v1",
-          "motion_design-v1": "#/components/schemas/Generate_motion_design_v1",
           "edit_video-v1": "#/components/schemas/Generate_edit_video_v1",
+          "motion_design-v1": "#/components/schemas/Generate_motion_design_v1",
           "model_walk-v1": "#/components/schemas/Generate_model_walk_v1",
           "product_360-v1": "#/components/schemas/Generate_product_360_v1",
-          "swap_models-v1": "#/components/schemas/Generate_swap_models_v1",
           "model_360-v1": "#/components/schemas/Generate_model_360_v1",
+          "swap_models-v1": "#/components/schemas/Generate_swap_models_v1",
           "face_swap-v1": "#/components/schemas/Generate_face_swap_v1",
           "fabric_to_design-v1": "#/components/schemas/Generate_fabric_to_design_v1",
           "image_to_fabric-v1": "#/components/schemas/Generate_image_to_fabric_v1",
           "text_to_textile-v1": "#/components/schemas/Generate_text_to_textile_v1",
           "snap_freeze-v1": "#/components/schemas/Generate_snap_freeze_v1",
-          "image_to_flat_lay-v1": "#/components/schemas/Generate_image_to_flat_lay_v1",
           "ugc_video-v1": "#/components/schemas/Generate_ugc_video_v1",
+          "image_to_flat_lay-v1": "#/components/schemas/Generate_image_to_flat_lay_v1",
           "swap_fabrics-v1": "#/components/schemas/Generate_swap_fabrics_v1",
           "logo_placement-v1": "#/components/schemas/Generate_logo_placement_v1",
           "text_to_sketch-v1": "#/components/schemas/Generate_text_to_sketch_v1",
@@ -1118,15 +1138,15 @@
           "fashion_ad-v1": "#/components/schemas/Generate_fashion_ad_v1",
           "detail_closeup-v1": "#/components/schemas/Generate_detail_closeup_v1",
           "editorial_video-v1": "#/components/schemas/Generate_editorial_video_v1",
-          "remove_video_background-v1": "#/components/schemas/Generate_remove_video_background_v1",
           "outfit_drop-v1": "#/components/schemas/Generate_outfit_drop_v1",
-          "passerby_transition-v1": "#/components/schemas/Generate_passerby_transition_v1",
+          "remove_video_background-v1": "#/components/schemas/Generate_remove_video_background_v1",
           "reframe_video-v1": "#/components/schemas/Generate_reframe_video_v1",
+          "passerby_transition-v1": "#/components/schemas/Generate_passerby_transition_v1",
           "crosswalk_look_switch-v1": "#/components/schemas/Generate_crosswalk_look_switch_v1",
           "change_video_background-v1": "#/components/schemas/Generate_change_video_background_v1",
           "change_video_outfit-v1": "#/components/schemas/Generate_change_video_outfit_v1",
-          "hanger_layering-v1": "#/components/schemas/Generate_hanger_layering_v1",
           "swap_video_model-v1": "#/components/schemas/Generate_swap_video_model_v1",
+          "hanger_layering-v1": "#/components/schemas/Generate_hanger_layering_v1",
           "window_walkby-v1": "#/components/schemas/Generate_window_walkby_v1",
           "detail_zoom_rush-v1": "#/components/schemas/Generate_detail_zoom_rush_v1",
           "outfit_morph-v1": "#/components/schemas/Generate_outfit_morph_v1",
@@ -6856,7 +6876,7 @@
        "type": "string",
        "format": "uri"
       },
-      "description": "Reference images — up to 3 public https URL(s).",
+      "description": "Reference images — up to 3 public https URL(s) of pictures.",
       "maxItems": 3,
       "minItems": 0
      },
@@ -6932,7 +6952,7 @@
      "start_image": {
       "type": "string",
       "format": "uri",
-      "description": "Start frame — a public https URL."
+      "description": "Start frame — a public https URL of a picture."
      },
      "prompt": {
       "type": "string",
@@ -7032,19 +7052,19 @@
        "type": "string",
        "format": "uri"
       },
-      "description": "Products — up to 3 public https URL(s).",
+      "description": "Products — up to 3 public https URL(s) of pictures.",
       "maxItems": 3,
       "minItems": 1
      },
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model image — a public https URL."
+      "description": "Model image — a public https URL of a picture."
      },
      "scene_image": {
       "type": "string",
       "format": "uri",
-      "description": "Scene — a public https URL."
+      "description": "Scene — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -7148,19 +7168,19 @@
        "type": "string",
        "format": "uri"
       },
-      "description": "Products — up to 3 public https URL(s).",
+      "description": "Products — up to 3 public https URL(s) of pictures.",
       "maxItems": 3,
       "minItems": 1
      },
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model image — a public https URL."
+      "description": "Model image — a public https URL of a picture."
      },
      "scene_image": {
       "type": "string",
       "format": "uri",
-      "description": "Scene — a public https URL."
+      "description": "Scene — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -7304,7 +7324,7 @@
      "garment_image": {
       "type": "string",
       "format": "uri",
-      "description": "Image — a public https URL."
+      "description": "Image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -7372,7 +7392,7 @@
      "reference_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference image — a public https URL."
+      "description": "Reference image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -7597,7 +7617,7 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -7648,12 +7668,12 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "reference_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference — a public https URL."
+      "description": "Reference — a public https URL of a picture."
      },
      "prompt": {
       "type": "string",
@@ -7724,7 +7744,7 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference model — a public https URL."
+      "description": "Reference model — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -7770,6 +7790,73 @@
      "rounding": "a fixed price per generation"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/reimagine_scene-muwelwl2.jpg"
+   },
+   "Generate_edit_video_v1": {
+    "title": "edit_video-v1",
+    "description": "Edit video — Change a video with a sentence, in your own words: what you ask is what the model does, nothing added, nothing kept back.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "edit_video-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL of a video clip."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "change": {
+        "type": "string",
+        "description": "The change. What should change — in your own words."
+       }
+      },
+      "required": [
+       "change"
+      ],
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video",
+     "fields"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 3.3,
+     "pro": 4.3,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/edit_video-muwf5s8t.jpg"
    },
    "Generate_motion_design_v1": {
     "title": "motion_design-v1",
@@ -7848,73 +7935,6 @@
      "rounding": "a fixed price per generation"
     }
    },
-   "Generate_edit_video_v1": {
-    "title": "edit_video-v1",
-    "description": "Edit video — Change a video with a sentence, in your own words: what you ask is what the model does, nothing added, nothing kept back.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "edit_video-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "change": {
-        "type": "string",
-        "description": "The change. What should change — in your own words."
-       }
-      },
-      "required": [
-       "change"
-      ],
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video",
-     "fields"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 3.3,
-     "pro": 4.3,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/edit_video-muwf5s8t.jpg"
-   },
    "Generate_model_walk_v1": {
     "title": "model_walk-v1",
     "description": "Model Walk — Your model walks, turns or poses, runway style, from one image.",
@@ -7950,7 +7970,7 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model image — a public https URL."
+      "description": "Model image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8042,12 +8062,12 @@
      "product_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product image — a public https URL."
+      "description": "Product image — a public https URL of a picture."
      },
      "back_image": {
       "type": "string",
       "format": "uri",
-      "description": "Back — a public https URL."
+      "description": "Back — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8103,80 +8123,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/product_360-muwelwl2.jpg"
    },
-   "Generate_swap_models_v1": {
-    "title": "swap_models-v1",
-    "description": "Swap Model — Keep the outfit, change the person wearing it.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "swap_models-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro",
-       "ultra"
-      ],
-      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "model_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "Reference model — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "modeldescription": {
-        "type": "string",
-        "description": "New model. The new model, e.g. \"red-haired woman in her 30s, freckles\". Leave it out to let the AI choose.",
-        "default": "a woman in her thirties, short dark hair"
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "auto",
-       "9:16",
-       "1:1",
-       "3:4",
-       "2:3",
-       "4:3",
-       "4:5",
-       "16:9",
-       "21:9",
-       "5:4",
-       "3:2"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "model_image"
-    ],
-    "additionalProperties": false,
-    "x-mode": "image",
-    "x-credits": {
-     "standard": 1,
-     "pro": 3,
-     "ultra": 7,
-     "unit": "per generation",
-     "rounding": "a fixed price per generation"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_models-muwf5s8t.jpg"
-   },
    "Generate_model_360_v1": {
     "title": "model_360-v1",
     "description": "Model 360 — Your model seen all around from a front and a back photo: the model turns on the spot, or the camera circles around them.",
@@ -8212,12 +8158,12 @@
      "front_image": {
       "type": "string",
       "format": "uri",
-      "description": "Front — a public https URL."
+      "description": "Front — a public https URL of a picture."
      },
      "back_image": {
       "type": "string",
       "format": "uri",
-      "description": "Back — a public https URL."
+      "description": "Back — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8279,6 +8225,80 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/model_360-muwelwl2.jpg"
    },
+   "Generate_swap_models_v1": {
+    "title": "swap_models-v1",
+    "description": "Swap Model — Keep the outfit, change the person wearing it.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "swap_models-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro",
+       "ultra"
+      ],
+      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "model_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Reference model — a public https URL of a picture."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "modeldescription": {
+        "type": "string",
+        "description": "New model. The new model, e.g. \"red-haired woman in her 30s, freckles\". Leave it out to let the AI choose.",
+        "default": "a woman in her thirties, short dark hair"
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "9:16",
+       "1:1",
+       "3:4",
+       "2:3",
+       "4:3",
+       "4:5",
+       "16:9",
+       "21:9",
+       "5:4",
+       "3:2"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "model_image"
+    ],
+    "additionalProperties": false,
+    "x-mode": "image",
+    "x-credits": {
+     "standard": 1,
+     "pro": 3,
+     "ultra": 7,
+     "unit": "per generation",
+     "rounding": "a fixed price per generation"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_models-muwf5s8t.jpg"
+   },
    "Generate_face_swap_v1": {
     "title": "face_swap-v1",
     "description": "Face Swap — Put a new face on a photo: upload the picture to edit and a portrait of the face to use, the AI swaps the face and keeps everything else.",
@@ -8305,12 +8325,12 @@
      "input_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your photo — a public https URL."
+      "description": "Your photo — a public https URL of a picture."
      },
      "swap_image": {
       "type": "string",
       "format": "uri",
-      "description": "New face — a public https URL."
+      "description": "New face — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -8367,7 +8387,7 @@
      "fabric_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your fabric — a public https URL."
+      "description": "Your fabric — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8489,7 +8509,7 @@
      "reference_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference image — a public https URL."
+      "description": "Reference image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8644,17 +8664,17 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "piece_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "First piece — a public https URL."
+      "description": "First piece — a public https URL of a picture."
      },
      "piece_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Second piece — a public https URL."
+      "description": "Second piece — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8709,74 +8729,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/snap_freeze-muuw4hhk.jpg"
    },
-   "Generate_image_to_flat_lay_v1": {
-    "title": "image_to_flat_lay-v1",
-    "description": "Image to Flat Lay — Turn any image into a flat lay visual.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "image_to_flat_lay-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro",
-       "ultra"
-      ],
-      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "garment_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "Product image — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "garmenttorecreate": {
-        "type": "string",
-        "description": "Product to recreate. Which product in the photo to lay flat, e.g. \"the denim jacket\" or \"the scarf\"."
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "1:1",
-       "9:16",
-       "2:3",
-       "3:4",
-       "3:2",
-       "4:3"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "garment_image"
-    ],
-    "additionalProperties": false,
-    "x-mode": "image",
-    "x-credits": {
-     "standard": 1,
-     "pro": 3,
-     "ultra": 7,
-     "unit": "per generation",
-     "rounding": "a fixed price per generation"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/image_to_flat_lay-muwf5s8t.jpg"
-   },
    "Generate_ugc_video_v1": {
     "title": "ugc_video-v1",
     "description": "UGC Video — A presenter shows your product and speaks to camera, smartphone style, with voice.",
@@ -8812,12 +8764,12 @@
      "product_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product — a public https URL."
+      "description": "Product — a public https URL of a picture."
      },
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model photo — a public https URL."
+      "description": "Model photo — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8877,6 +8829,74 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/ugc_video-muwjfga4.jpg"
    },
+   "Generate_image_to_flat_lay_v1": {
+    "title": "image_to_flat_lay-v1",
+    "description": "Image to Flat Lay — Turn any image into a flat lay visual.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "image_to_flat_lay-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro",
+       "ultra"
+      ],
+      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "garment_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Product image — a public https URL of a picture."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "garmenttorecreate": {
+        "type": "string",
+        "description": "Product to recreate. Which product in the photo to lay flat, e.g. \"the denim jacket\" or \"the scarf\"."
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "1:1",
+       "9:16",
+       "2:3",
+       "3:4",
+       "3:2",
+       "4:3"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "garment_image"
+    ],
+    "additionalProperties": false,
+    "x-mode": "image",
+    "x-credits": {
+     "standard": 1,
+     "pro": 3,
+     "ultra": 7,
+     "unit": "per generation",
+     "rounding": "a fixed price per generation"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/image_to_flat_lay-muwf5s8t.jpg"
+   },
    "Generate_swap_fabrics_v1": {
     "title": "swap_fabrics-v1",
     "description": "Swap Fabrics — Swap a fabric on a fashion design or any image.",
@@ -8904,12 +8924,12 @@
      "design_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your design — a public https URL."
+      "description": "Your design — a public https URL of a picture."
      },
      "fabric_image": {
       "type": "string",
       "format": "uri",
-      "description": "New fabric — a public https URL."
+      "description": "New fabric — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -8972,12 +8992,12 @@
      "garment_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your product — a public https URL."
+      "description": "Your product — a public https URL of a picture."
      },
      "logo_image": {
       "type": "string",
       "format": "uri",
-      "description": "Logo (PNG) — a public https URL."
+      "description": "Logo (PNG) — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9143,7 +9163,7 @@
      "sketch_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your sketch — a public https URL."
+      "description": "Your sketch — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9217,12 +9237,12 @@
      "garment_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product image — a public https URL."
+      "description": "Product image — a public https URL of a picture."
      },
      "back_image": {
       "type": "string",
       "format": "uri",
-      "description": "Back (optional) — a public https URL."
+      "description": "Back (optional) — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9303,7 +9323,7 @@
      "sketch_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your sketch — a public https URL."
+      "description": "Your sketch — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -9354,7 +9374,7 @@
      "image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9426,12 +9446,12 @@
      "sketch_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your sketch — a public https URL."
+      "description": "Your sketch — a public https URL of a picture."
      },
      "fabric_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your fabric — a public https URL."
+      "description": "Your fabric — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -9488,7 +9508,7 @@
      "reference_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference image — a public https URL."
+      "description": "Reference image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9598,7 +9618,7 @@
      "reference_image": {
       "type": "string",
       "format": "uri",
-      "description": "Reference image — a public https URL."
+      "description": "Reference image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9673,12 +9693,12 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "background_image": {
       "type": "string",
       "format": "uri",
-      "description": "New background — a public https URL."
+      "description": "New background — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9740,7 +9760,7 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -9796,12 +9816,12 @@
      "product_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your product — a public https URL."
+      "description": "Your product — a public https URL of a picture."
      },
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model photo — a public https URL."
+      "description": "Model photo — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -9881,7 +9901,7 @@
      "source_video": {
       "type": "string",
       "format": "uri",
-      "description": "Your video — a public https URL."
+      "description": "Your video — a public https URL of a video clip."
      }
     },
     "required": [
@@ -9926,7 +9946,7 @@
      "photo_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your photo — a public https URL."
+      "description": "Your photo — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10059,7 +10079,7 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Your image — a public https URL."
+      "description": "Your image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10140,7 +10160,7 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product image — a public https URL."
+      "description": "Product image — a public https URL of a picture."
      },
      "ratio": {
       "type": "string",
@@ -10200,12 +10220,12 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product — a public https URL."
+      "description": "Product — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10299,12 +10319,12 @@
      "start_image": {
       "type": "string",
       "format": "uri",
-      "description": "First look — a public https URL."
+      "description": "First look — a public https URL of a picture."
      },
      "end_image": {
       "type": "string",
       "format": "uri",
-      "description": "Second look — a public https URL."
+      "description": "Second look — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10393,7 +10413,7 @@
      "product_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product — a public https URL."
+      "description": "Product — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10479,7 +10499,7 @@
      "product_image": {
       "type": "string",
       "format": "uri",
-      "description": "Product — a public https URL."
+      "description": "Product — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10566,7 +10586,7 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model image — a public https URL."
+      "description": "Model image — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10623,76 +10643,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/editorial_video-muwelwl2.jpg"
    },
-   "Generate_remove_video_background_v1": {
-    "title": "remove_video_background-v1",
-    "description": "Remove Video Background — Cut the subject out of a video and keep it on a transparent, white, black or green background — the clip keeps its length and its shape.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "remove_video_background-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "background": {
-        "type": "string",
-        "enum": [
-         "Transparent",
-         "White",
-         "Black",
-         "Green"
-        ],
-        "description": "Background. What the subject lands on. Transparent gives a .webm with an alpha channel (plays in Chrome, Edge, Firefox and editing tools; Safari shows black); the colours give an mp4 that plays everywhere.",
-        "default": "White"
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 1.4,
-     "pro": 1.4,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/remove_video_background-muwelwl2.jpg"
-   },
    "Generate_outfit_drop_v1": {
     "title": "outfit_drop-v1",
     "description": "Outfit Drop — The trending reel: your products fall into the frame, your model jumps and lands wearing them. From a photo of your model and two of your products.",
@@ -10728,17 +10678,17 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "product_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Product 1 — a public https URL."
+      "description": "Product 1 — a public https URL of a picture."
      },
      "product_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Product 2 — a public https URL."
+      "description": "Product 2 — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10793,6 +10743,139 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/outfit_drop-muub4c0u.jpg"
    },
+   "Generate_remove_video_background_v1": {
+    "title": "remove_video_background-v1",
+    "description": "Remove Video Background — Cut the subject out of a video and keep it on a transparent, white, black or green background — the clip keeps its length and its shape.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "remove_video_background-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL of a video clip."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "background": {
+        "type": "string",
+        "enum": [
+         "Transparent",
+         "White",
+         "Black",
+         "Green"
+        ],
+        "description": "Background. What the subject lands on. Transparent gives a .webm with an alpha channel (plays in Chrome, Edge, Firefox and editing tools; Safari shows black); the colours give an mp4 that plays everywhere.",
+        "default": "White"
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 1.4,
+     "pro": 1.4,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/remove_video_background-muwelwl2.jpg"
+   },
+   "Generate_reframe_video_v1": {
+    "title": "reframe_video-v1",
+    "description": "Reframe Video — Change a video's format without cropping: the subject is recentred and the missing edges are invented, the clip keeps its length.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "reframe_video-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL of a video clip."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "9:16",
+       "16:9",
+       "1:1",
+       "4:5",
+       "5:4"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 4.4,
+     "pro": 4.4,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/reframe_video-muwelwl2.jpg"
+   },
    "Generate_passerby_transition_v1": {
     "title": "passerby_transition-v1",
     "description": "Passer-By Transition — The trending street reel: passers-by wipe the frame and reveal your model in the next look, a few steps further down the street. From a photo of your model and two of your garments.",
@@ -10828,17 +10911,17 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 1 — a public https URL."
+      "description": "Garment 1 — a public https URL of a picture."
      },
      "garment_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 2 — a public https URL."
+      "description": "Garment 2 — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -10893,69 +10976,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/passerby_transition-muub49qi.jpg"
    },
-   "Generate_reframe_video_v1": {
-    "title": "reframe_video-v1",
-    "description": "Reframe Video — Change a video's format without cropping: the subject is recentred and the missing edges are invented, the clip keeps its length.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "reframe_video-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "9:16",
-       "16:9",
-       "1:1",
-       "4:5",
-       "5:4"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 4.4,
-     "pro": 4.4,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/reframe_video-muwelwl2.jpg"
-   },
    "Generate_crosswalk_look_switch_v1": {
     "title": "crosswalk_look_switch-v1",
     "description": "Look Switch Walk — The trending crosswalk reel: your model walks toward the camera and every beat switches the look. From a photo of your model and two of your garments.",
@@ -10991,17 +11011,17 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 1 — a public https URL."
+      "description": "Garment 1 — a public https URL of a picture."
      },
      "garment_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 2 — a public https URL."
+      "description": "Garment 2 — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -11090,7 +11110,7 @@
      "source_video": {
       "type": "string",
       "format": "uri",
-      "description": "Your video — a public https URL."
+      "description": "Your video — a public https URL of a video clip."
      },
      "fields": {
       "type": "object",
@@ -11167,7 +11187,7 @@
      "source_video": {
       "type": "string",
       "format": "uri",
-      "description": "Your video — a public https URL."
+      "description": "Your video — a public https URL of a video clip."
      },
      "fields": {
       "type": "object",
@@ -11196,6 +11216,77 @@
      "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/change_video_outfit-muwf5s8t.jpg"
+   },
+   "Generate_swap_video_model_v1": {
+    "title": "swap_video_model-v1",
+    "description": "Swap Model in Video — Another person in the same video: give a photo of the new model, the outfit, the movement and the setting stay.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "swap_video_model-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL of a video clip."
+     },
+     "model_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "New model — a public https URL of a picture."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "9:16",
+       "1:1",
+       "3:4",
+       "2:3",
+       "4:3",
+       "3:2"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video",
+     "model_image"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 3.3,
+     "pro": 4.3,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_video_model-muwhuyjg.jpg"
    },
    "Generate_hanger_layering_v1": {
     "title": "hanger_layering-v1",
@@ -11232,27 +11323,27 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1a — a public https URL."
+      "description": "Look 1a — a public https URL of a picture."
      },
      "garment_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1b — a public https URL."
+      "description": "Look 1b — a public https URL of a picture."
      },
      "garment_image_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2a — a public https URL."
+      "description": "Look 2a — a public https URL of a picture."
      },
      "garment_image_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2b — a public https URL."
+      "description": "Look 2b — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -11309,77 +11400,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/hanger_layering-muwbwe18.jpg"
    },
-   "Generate_swap_video_model_v1": {
-    "title": "swap_video_model-v1",
-    "description": "Swap Model in Video — Another person in the same video: give a photo of the new model, the outfit, the movement and the setting stay.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "swap_video_model-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "model_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "New model — a public https URL."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "auto",
-       "9:16",
-       "1:1",
-       "3:4",
-       "2:3",
-       "4:3",
-       "3:2"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video",
-     "model_image"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 3.3,
-     "pro": 4.3,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_video_model-muwhuyjg.jpg"
-   },
    "Generate_window_walkby_v1": {
     "title": "window_walkby-v1",
     "description": "Window Walk-By — A fixed shot through a tall window: your model walks in from the left, poses, walks out right — and comes back in the next look. From a photo of your model and two garments.",
@@ -11415,17 +11435,17 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture."
      },
      "garment_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -11515,7 +11535,7 @@
      "source_image": {
       "type": "string",
       "format": "uri",
-      "description": "Photo — a public https URL."
+      "description": "Photo — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -11603,22 +11623,22 @@
      "model_image": {
       "type": "string",
       "format": "uri",
-      "description": "Model — a public https URL."
+      "description": "Model — a public https URL of a picture."
      },
      "garment_image_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture."
      },
      "garment_image_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture."
      },
      "garment_image_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture."
      },
      "fields": {
       "type": "object",
@@ -11700,7 +11720,7 @@
      "reference": {
       "type": "string",
       "format": "uri",
-      "description": "Reference — a public https URL."
+      "description": "Reference — a public https URL of a picture."
      },
      "prompt": {
       "type": "string",
@@ -11770,7 +11790,7 @@
      "source_video": {
       "type": "string",
       "format": "uri",
-      "description": "A video to lay the voice on — a public https URL."
+      "description": "A video to lay the voice on — a public https URL of a video clip."
      },
      "prompt": {
       "type": "string",
@@ -11863,32 +11883,32 @@
      "look_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "look_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "look_3": {
       "type": "string",
       "format": "uri",
-      "description": "Close-up — a public https URL."
+      "description": "Close-up — a public https URL of a picture or a video clip."
      },
      "look_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "look_5": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "look_6": {
       "type": "string",
       "format": "uri",
-      "description": "Look 5 — a public https URL."
+      "description": "Look 5 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -11999,22 +12019,22 @@
      "picture_1": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 1 — a public https URL."
+      "description": "Picture 1 — a public https URL of a picture or a video clip."
      },
      "picture_2": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 2 — a public https URL."
+      "description": "Picture 2 — a public https URL of a picture or a video clip."
      },
      "picture_3": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 3 — a public https URL."
+      "description": "Picture 3 — a public https URL of a picture or a video clip."
      },
      "picture_4": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 4 — a public https URL."
+      "description": "Picture 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12108,7 +12128,7 @@
      "picture_1": {
       "type": "string",
       "format": "uri",
-      "description": "Photo — a public https URL."
+      "description": "Photo — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12214,22 +12234,22 @@
      "look_video": {
       "type": "string",
       "format": "uri",
-      "description": "Video — a public https URL."
+      "description": "Video — a public https URL of a video clip."
      },
      "photo_1": {
       "type": "string",
       "format": "uri",
-      "description": "Photo 1 — a public https URL."
+      "description": "Photo 1 — a public https URL of a picture or a video clip."
      },
      "photo_2": {
       "type": "string",
       "format": "uri",
-      "description": "Photo 2 — a public https URL."
+      "description": "Photo 2 — a public https URL of a picture or a video clip."
      },
      "photo_3": {
       "type": "string",
       "format": "uri",
-      "description": "Photo 3 — a public https URL."
+      "description": "Photo 3 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12348,22 +12368,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12500,22 +12520,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Phone screen — a public https URL."
+      "description": "Phone screen — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Card 1 — a public https URL."
+      "description": "Card 1 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Card 2 — a public https URL."
+      "description": "Card 2 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Card 3 — a public https URL."
+      "description": "Card 3 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12629,32 +12649,32 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 1 — a public https URL."
+      "description": "Clip 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 2 — a public https URL."
+      "description": "Clip 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 3 — a public https URL."
+      "description": "Clip 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 4 — a public https URL."
+      "description": "Clip 4 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 5 — a public https URL."
+      "description": "Clip 5 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 6 — a public https URL."
+      "description": "Clip 6 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12747,42 +12767,42 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 1 — a public https URL."
+      "description": "Picture 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 2 — a public https URL."
+      "description": "Picture 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 3 — a public https URL."
+      "description": "Picture 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 4 — a public https URL."
+      "description": "Picture 4 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 5 — a public https URL."
+      "description": "Picture 5 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 6 — a public https URL."
+      "description": "Picture 6 — a public https URL of a picture or a video clip."
      },
      "slot_7": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 7 — a public https URL."
+      "description": "Picture 7 — a public https URL of a picture or a video clip."
      },
      "slot_8": {
       "type": "string",
       "format": "uri",
-      "description": "Picture 8 — a public https URL."
+      "description": "Picture 8 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12871,32 +12891,32 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Look 5 — a public https URL."
+      "description": "Look 5 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Look 6 — a public https URL."
+      "description": "Look 6 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -12989,32 +13009,32 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 1 — a public https URL."
+      "description": "Garment 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 2 — a public https URL."
+      "description": "Garment 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Garment 3 — a public https URL."
+      "description": "Garment 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13110,12 +13130,12 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Portrait — a public https URL."
+      "description": "Portrait — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Full look — a public https URL."
+      "description": "Full look — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13197,32 +13217,32 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Look 5 — a public https URL."
+      "description": "Look 5 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Look 6 — a public https URL."
+      "description": "Look 6 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13310,17 +13330,17 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13406,22 +13426,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 1 — a public https URL."
+      "description": "Clip 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 2 — a public https URL."
+      "description": "Clip 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 3 — a public https URL."
+      "description": "Clip 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Clip 4 — a public https URL."
+      "description": "Clip 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13508,22 +13528,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13615,22 +13635,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13717,22 +13737,22 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
@@ -13829,32 +13849,32 @@
      "slot_1": {
       "type": "string",
       "format": "uri",
-      "description": "Look 1 — a public https URL."
+      "description": "Look 1 — a public https URL of a picture or a video clip."
      },
      "slot_2": {
       "type": "string",
       "format": "uri",
-      "description": "Look 2 — a public https URL."
+      "description": "Look 2 — a public https URL of a picture or a video clip."
      },
      "slot_3": {
       "type": "string",
       "format": "uri",
-      "description": "Look 3 — a public https URL."
+      "description": "Look 3 — a public https URL of a picture or a video clip."
      },
      "slot_4": {
       "type": "string",
       "format": "uri",
-      "description": "Look 4 — a public https URL."
+      "description": "Look 4 — a public https URL of a picture or a video clip."
      },
      "slot_5": {
       "type": "string",
       "format": "uri",
-      "description": "Look 5 — a public https URL."
+      "description": "Look 5 — a public https URL of a picture or a video clip."
      },
      "slot_6": {
       "type": "string",
       "format": "uri",
-      "description": "Look 6 — a public https URL."
+      "description": "Look 6 — a public https URL of a picture or a video clip."
      },
      "fields": {
       "type": "object",
