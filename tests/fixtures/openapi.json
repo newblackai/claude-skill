@@ -14,8 +14,8 @@
    "url": "https://thenewblack.ai/terms_of_service"
   },
   "termsOfService": "https://thenewblack.ai/terms_of_service",
-  "x-workflows-revision": "d9e90622f50902c6",
-  "x-openapi-revision": "5b36446611943f5a"
+  "x-workflows-revision": "0feb20dd77845ab5",
+  "x-openapi-revision": "6dcef39d5a781591"
  },
  "servers": [
   {
@@ -881,10 +881,10 @@
           "$ref": "#/components/schemas/Generate_product_360_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_model_360_v1"
+          "$ref": "#/components/schemas/Generate_swap_models_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_swap_models_v1"
+          "$ref": "#/components/schemas/Generate_model_360_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_face_swap_v1"
@@ -899,13 +899,13 @@
           "$ref": "#/components/schemas/Generate_text_to_textile_v1"
          },
          {
+          "$ref": "#/components/schemas/Generate_snap_freeze_v1"
+         },
+         {
           "$ref": "#/components/schemas/Generate_image_to_flat_lay_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_ugc_video_v1"
-         },
-         {
-          "$ref": "#/components/schemas/Generate_snap_freeze_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_swap_fabrics_v1"
@@ -974,16 +974,16 @@
           "$ref": "#/components/schemas/Generate_editorial_video_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_outfit_drop_v1"
-         },
-         {
           "$ref": "#/components/schemas/Generate_remove_video_background_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_reframe_video_v1"
+          "$ref": "#/components/schemas/Generate_outfit_drop_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_passerby_transition_v1"
+         },
+         {
+          "$ref": "#/components/schemas/Generate_reframe_video_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_crosswalk_look_switch_v1"
@@ -995,10 +995,10 @@
           "$ref": "#/components/schemas/Generate_change_video_outfit_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_swap_video_model_v1"
+          "$ref": "#/components/schemas/Generate_hanger_layering_v1"
          },
          {
-          "$ref": "#/components/schemas/Generate_hanger_layering_v1"
+          "$ref": "#/components/schemas/Generate_swap_video_model_v1"
          },
          {
           "$ref": "#/components/schemas/Generate_window_walkby_v1"
@@ -1087,15 +1087,15 @@
           "edit_video-v1": "#/components/schemas/Generate_edit_video_v1",
           "model_walk-v1": "#/components/schemas/Generate_model_walk_v1",
           "product_360-v1": "#/components/schemas/Generate_product_360_v1",
-          "model_360-v1": "#/components/schemas/Generate_model_360_v1",
           "swap_models-v1": "#/components/schemas/Generate_swap_models_v1",
+          "model_360-v1": "#/components/schemas/Generate_model_360_v1",
           "face_swap-v1": "#/components/schemas/Generate_face_swap_v1",
           "fabric_to_design-v1": "#/components/schemas/Generate_fabric_to_design_v1",
           "image_to_fabric-v1": "#/components/schemas/Generate_image_to_fabric_v1",
           "text_to_textile-v1": "#/components/schemas/Generate_text_to_textile_v1",
+          "snap_freeze-v1": "#/components/schemas/Generate_snap_freeze_v1",
           "image_to_flat_lay-v1": "#/components/schemas/Generate_image_to_flat_lay_v1",
           "ugc_video-v1": "#/components/schemas/Generate_ugc_video_v1",
-          "snap_freeze-v1": "#/components/schemas/Generate_snap_freeze_v1",
           "swap_fabrics-v1": "#/components/schemas/Generate_swap_fabrics_v1",
           "logo_placement-v1": "#/components/schemas/Generate_logo_placement_v1",
           "text_to_sketch-v1": "#/components/schemas/Generate_text_to_sketch_v1",
@@ -1118,15 +1118,15 @@
           "fashion_ad-v1": "#/components/schemas/Generate_fashion_ad_v1",
           "detail_closeup-v1": "#/components/schemas/Generate_detail_closeup_v1",
           "editorial_video-v1": "#/components/schemas/Generate_editorial_video_v1",
-          "outfit_drop-v1": "#/components/schemas/Generate_outfit_drop_v1",
           "remove_video_background-v1": "#/components/schemas/Generate_remove_video_background_v1",
-          "reframe_video-v1": "#/components/schemas/Generate_reframe_video_v1",
+          "outfit_drop-v1": "#/components/schemas/Generate_outfit_drop_v1",
           "passerby_transition-v1": "#/components/schemas/Generate_passerby_transition_v1",
+          "reframe_video-v1": "#/components/schemas/Generate_reframe_video_v1",
           "crosswalk_look_switch-v1": "#/components/schemas/Generate_crosswalk_look_switch_v1",
           "change_video_background-v1": "#/components/schemas/Generate_change_video_background_v1",
           "change_video_outfit-v1": "#/components/schemas/Generate_change_video_outfit_v1",
-          "swap_video_model-v1": "#/components/schemas/Generate_swap_video_model_v1",
           "hanger_layering-v1": "#/components/schemas/Generate_hanger_layering_v1",
+          "swap_video_model-v1": "#/components/schemas/Generate_swap_video_model_v1",
           "window_walkby-v1": "#/components/schemas/Generate_window_walkby_v1",
           "detail_zoom_rush-v1": "#/components/schemas/Generate_detail_zoom_rush_v1",
           "outfit_morph-v1": "#/components/schemas/Generate_outfit_morph_v1",
@@ -7443,6 +7443,20 @@
      "fields": {
       "type": "object",
       "properties": {
+       "product_type": {
+        "type": "string",
+        "enum": [
+         "garment",
+         "shoes",
+         "bag",
+         "jewelry",
+         "eyewear",
+         "headwear",
+         "other"
+        ],
+        "description": "Product. What the product is — the studio's Product row.",
+        "default": "garment"
+       },
        "age": {
         "type": "string",
         "enum": [
@@ -8089,6 +8103,80 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/product_360-muwelwl2.jpg"
    },
+   "Generate_swap_models_v1": {
+    "title": "swap_models-v1",
+    "description": "Swap Model — Keep the outfit, change the person wearing it.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "swap_models-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro",
+       "ultra"
+      ],
+      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "model_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Reference model — a public https URL."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "modeldescription": {
+        "type": "string",
+        "description": "New model. The new model, e.g. \"red-haired woman in her 30s, freckles\". Leave it out to let the AI choose.",
+        "default": "a woman in her thirties, short dark hair"
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "9:16",
+       "1:1",
+       "3:4",
+       "2:3",
+       "4:3",
+       "4:5",
+       "16:9",
+       "21:9",
+       "5:4",
+       "3:2"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "model_image"
+    ],
+    "additionalProperties": false,
+    "x-mode": "image",
+    "x-credits": {
+     "standard": 1,
+     "pro": 3,
+     "ultra": 7,
+     "unit": "per generation",
+     "rounding": "a fixed price per generation"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_models-muwf5s8t.jpg"
+   },
    "Generate_model_360_v1": {
     "title": "model_360-v1",
     "description": "Model 360 — Your model seen all around from a front and a back photo: the model turns on the spot, or the camera circles around them.",
@@ -8190,80 +8278,6 @@
      "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/model_360-muwelwl2.jpg"
-   },
-   "Generate_swap_models_v1": {
-    "title": "swap_models-v1",
-    "description": "Swap Model — Keep the outfit, change the person wearing it.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "swap_models-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro",
-       "ultra"
-      ],
-      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 1K resolution image + fast generation. `pro`: 2K resolution image + thinking process before generating. `ultra`: 4K resolution image + deep thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "model_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "Reference model — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "modeldescription": {
-        "type": "string",
-        "description": "New model. The new model, e.g. \"red-haired woman in her 30s, freckles\". Leave it out to let the AI choose.",
-        "default": "a woman in her thirties, short dark hair"
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "auto",
-       "9:16",
-       "1:1",
-       "3:4",
-       "2:3",
-       "4:3",
-       "4:5",
-       "16:9",
-       "21:9",
-       "5:4",
-       "3:2"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "model_image"
-    ],
-    "additionalProperties": false,
-    "x-mode": "image",
-    "x-credits": {
-     "standard": 1,
-     "pro": 3,
-     "ultra": 7,
-     "unit": "per generation",
-     "rounding": "a fixed price per generation"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_models-muwf5s8t.jpg"
    },
    "Generate_face_swap_v1": {
     "title": "face_swap-v1",
@@ -8595,6 +8609,106 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/text-to-textile-6e227c4c.webp"
    },
+   "Generate_snap_freeze_v1": {
+    "title": "snap_freeze-v1",
+    "description": "Snap Freeze — The trending stop-and-snap reel: a raised palm stops your model, the camera explores the first piece, a finger snap switches it to the second, and they walk on. From a photo of your model and two of your pieces.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "snap_freeze-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro",
+       "ultra"
+      ],
+      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating. `ultra`: 1080p resolution video + deep thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip."
+     },
+     "model_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Model — a public https URL."
+     },
+     "piece_image_1": {
+      "type": "string",
+      "format": "uri",
+      "description": "First piece — a public https URL."
+     },
+     "piece_image_2": {
+      "type": "string",
+      "format": "uri",
+      "description": "Second piece — a public https URL."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "decor": {
+        "type": "string",
+        "description": "Setting. Where the reel is shot — a crosswalk, a market, a station.",
+        "default": "a busy city crosswalk on a sunny afternoon"
+       },
+       "audio": {
+        "type": "string",
+        "description": "Audio. The sound of the clip — music, voices, ambience. Leave the default for the natural sounds of the scene.",
+        "default": "No music, natural environment sounds."
+       },
+       "details": {
+        "type": "string",
+        "description": "Add details. Anything to add or change, in a sentence — it is added at the very end of the prompt."
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "9:16"
+      ],
+      "description": "The output format."
+     },
+     "duration": {
+      "type": "string",
+      "enum": [
+       "10"
+      ],
+      "description": "The clip length, in seconds."
+     }
+    },
+    "required": [
+     "workflow",
+     "model_image",
+     "piece_image_1",
+     "piece_image_2"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 2.2,
+     "pro": 4.4,
+     "ultra": 23,
+     "unit": "per second of output",
+     "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/snap_freeze-muuw4hhk.jpg"
+   },
    "Generate_image_to_flat_lay_v1": {
     "title": "image_to_flat_lay-v1",
     "description": "Image to Flat Lay — Turn any image into a flat lay visual.",
@@ -8762,106 +8876,6 @@
      "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/ugc_video-muwjfga4.jpg"
-   },
-   "Generate_snap_freeze_v1": {
-    "title": "snap_freeze-v1",
-    "description": "Snap Freeze — The trending stop-and-snap reel: a raised palm stops your model, the camera explores the first piece, a finger snap switches it to the second, and they walk on. From a photo of your model and two of your pieces.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "snap_freeze-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro",
-       "ultra"
-      ],
-      "description": "The quality tier; `standard` when omitted. `ultra` is the best model at its largest output — a photo in 4K (from the Pro plan), a video in 1080p on our top video model. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating. `ultra`: 1080p resolution video + deep thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip."
-     },
-     "model_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "Model — a public https URL."
-     },
-     "piece_image_1": {
-      "type": "string",
-      "format": "uri",
-      "description": "First piece — a public https URL."
-     },
-     "piece_image_2": {
-      "type": "string",
-      "format": "uri",
-      "description": "Second piece — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "decor": {
-        "type": "string",
-        "description": "Setting. Where the reel is shot — a crosswalk, a market, a station.",
-        "default": "a busy city crosswalk on a sunny afternoon"
-       },
-       "audio": {
-        "type": "string",
-        "description": "Audio. The sound of the clip — music, voices, ambience. Leave the default for the natural sounds of the scene.",
-        "default": "No music, natural environment sounds."
-       },
-       "details": {
-        "type": "string",
-        "description": "Add details. Anything to add or change, in a sentence — it is added at the very end of the prompt."
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "9:16"
-      ],
-      "description": "The output format."
-     },
-     "duration": {
-      "type": "string",
-      "enum": [
-       "10"
-      ],
-      "description": "The clip length, in seconds."
-     }
-    },
-    "required": [
-     "workflow",
-     "model_image",
-     "piece_image_1",
-     "piece_image_2"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 2.2,
-     "pro": 4.4,
-     "ultra": 23,
-     "unit": "per second of output",
-     "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/snap_freeze-muuw4hhk.jpg"
    },
    "Generate_swap_fabrics_v1": {
     "title": "swap_fabrics-v1",
@@ -10609,6 +10623,76 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/editorial_video-muwelwl2.jpg"
    },
+   "Generate_remove_video_background_v1": {
+    "title": "remove_video_background-v1",
+    "description": "Remove Video Background — Cut the subject out of a video and keep it on a transparent, white, black or green background — the clip keeps its length and its shape.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "remove_video_background-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL."
+     },
+     "fields": {
+      "type": "object",
+      "properties": {
+       "background": {
+        "type": "string",
+        "enum": [
+         "Transparent",
+         "White",
+         "Black",
+         "Green"
+        ],
+        "description": "Background. What the subject lands on. Transparent gives a .webm with an alpha channel (plays in Chrome, Edge, Firefox and editing tools; Safari shows black); the colours give an mp4 that plays everywhere.",
+        "default": "White"
+       }
+      },
+      "additionalProperties": false,
+      "description": "The panel's fields, by name."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 1.4,
+     "pro": 1.4,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/remove_video_background-muwelwl2.jpg"
+   },
    "Generate_outfit_drop_v1": {
     "title": "outfit_drop-v1",
     "description": "Outfit Drop — The trending reel: your products fall into the frame, your model jumps and lands wearing them. From a photo of your model and two of your products.",
@@ -10709,139 +10793,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/outfit_drop-muub4c0u.jpg"
    },
-   "Generate_remove_video_background_v1": {
-    "title": "remove_video_background-v1",
-    "description": "Remove Video Background — Cut the subject out of a video and keep it on a transparent, white, black or green background — the clip keeps its length and its shape.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "remove_video_background-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "fields": {
-      "type": "object",
-      "properties": {
-       "background": {
-        "type": "string",
-        "enum": [
-         "Transparent",
-         "White",
-         "Black",
-         "Green"
-        ],
-        "description": "Background. What the subject lands on. Transparent gives a .webm with an alpha channel (plays in Chrome, Edge, Firefox and editing tools; Safari shows black); the colours give an mp4 that plays everywhere.",
-        "default": "White"
-       }
-      },
-      "additionalProperties": false,
-      "description": "The panel's fields, by name."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 1.4,
-     "pro": 1.4,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/remove_video_background-muwelwl2.jpg"
-   },
-   "Generate_reframe_video_v1": {
-    "title": "reframe_video-v1",
-    "description": "Reframe Video — Change a video's format without cropping: the subject is recentred and the missing edges are invented, the clip keeps its length.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "reframe_video-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "9:16",
-       "16:9",
-       "1:1",
-       "4:5",
-       "5:4"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 4.4,
-     "pro": 4.4,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/reframe_video-muwelwl2.jpg"
-   },
    "Generate_passerby_transition_v1": {
     "title": "passerby_transition-v1",
     "description": "Passer-By Transition — The trending street reel: passers-by wipe the frame and reveal your model in the next look, a few steps further down the street. From a photo of your model and two of your garments.",
@@ -10941,6 +10892,69 @@
      "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/passerby_transition-muub49qi.jpg"
+   },
+   "Generate_reframe_video_v1": {
+    "title": "reframe_video-v1",
+    "description": "Reframe Video — Change a video's format without cropping: the subject is recentred and the missing edges are invented, the clip keeps its length.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "reframe_video-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "9:16",
+       "16:9",
+       "1:1",
+       "4:5",
+       "5:4"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 4.4,
+     "pro": 4.4,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/reframe_video-muwelwl2.jpg"
    },
    "Generate_crosswalk_look_switch_v1": {
     "title": "crosswalk_look_switch-v1",
@@ -11183,77 +11197,6 @@
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/change_video_outfit-muwf5s8t.jpg"
    },
-   "Generate_swap_video_model_v1": {
-    "title": "swap_video_model-v1",
-    "description": "Swap Model in Video — Another person in the same video: give a photo of the new model, the outfit, the movement and the setting stay.",
-    "type": "object",
-    "properties": {
-     "workflow": {
-      "type": "string",
-      "const": "swap_video_model-v1",
-      "description": "The versioned endpoint name."
-     },
-     "tier": {
-      "type": "string",
-      "enum": [
-       "standard",
-       "pro"
-      ],
-      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
-     },
-     "webhook_url": {
-      "type": "string",
-      "format": "uri",
-      "description": "Called with the outcome when the generation settles."
-     },
-     "sound": {
-      "type": "string",
-      "enum": [
-       "on",
-       "off"
-      ],
-      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
-     },
-     "source_video": {
-      "type": "string",
-      "format": "uri",
-      "description": "Your video — a public https URL."
-     },
-     "model_image": {
-      "type": "string",
-      "format": "uri",
-      "description": "New model — a public https URL."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "auto",
-       "9:16",
-       "1:1",
-       "3:4",
-       "2:3",
-       "4:3",
-       "3:2"
-      ],
-      "description": "The output format."
-     }
-    },
-    "required": [
-     "workflow",
-     "source_video",
-     "model_image"
-    ],
-    "additionalProperties": false,
-    "x-mode": "video",
-    "x-credits": {
-     "standard": 3.3,
-     "pro": 4.3,
-     "ultra": null,
-     "unit": "per second of the clip given",
-     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
-    },
-    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_video_model-muwhuyjg.jpg"
-   },
    "Generate_hanger_layering_v1": {
     "title": "hanger_layering-v1",
     "description": "Hanger Switch — The trending hanger reel: your model holds up two hangers and is instantly wearing both pieces — layered or top and bottom — then two more. From a photo of your model and two pairs of garments.",
@@ -11365,6 +11308,77 @@
      "rounding": "the seconds asked × the rate, rounded up to a whole credit; at most 1000"
     },
     "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/first-frame/hanger_layering-muwbwe18.jpg"
+   },
+   "Generate_swap_video_model_v1": {
+    "title": "swap_video_model-v1",
+    "description": "Swap Model in Video — Another person in the same video: give a photo of the new model, the outfit, the movement and the setting stay.",
+    "type": "object",
+    "properties": {
+     "workflow": {
+      "type": "string",
+      "const": "swap_video_model-v1",
+      "description": "The versioned endpoint name."
+     },
+     "tier": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "pro"
+      ],
+      "description": "The quality tier; `standard` when omitted. `standard`: 720p resolution video + fast generation. `pro`: 1080p resolution video + thinking process before generating."
+     },
+     "webhook_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Called with the outcome when the generation settles."
+     },
+     "sound": {
+      "type": "string",
+      "enum": [
+       "on",
+       "off"
+      ],
+      "description": "The clip's own sound (voices, ambience); `on` when omitted, `off` makes a silent clip. Accepted, but none of this workflow's engines has a sound switch: no effect."
+     },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "Your video — a public https URL."
+     },
+     "model_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "New model — a public https URL."
+     },
+     "ratio": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "9:16",
+       "1:1",
+       "3:4",
+       "2:3",
+       "4:3",
+       "3:2"
+      ],
+      "description": "The output format."
+     }
+    },
+    "required": [
+     "workflow",
+     "source_video",
+     "model_image"
+    ],
+    "additionalProperties": false,
+    "x-mode": "video",
+    "x-credits": {
+     "standard": 3.3,
+     "pro": 4.3,
+     "ultra": null,
+     "unit": "per second of the clip given",
+     "rounding": "the clip's length rounded up to the second, × the rate, rounded up to a whole credit; at most 1000"
+    },
+    "x-thumbnail": "https://cloud.thenewblack.ai/storage/v1/object/public/workflow-thumbnails/house-model/swap_video_model-muwhuyjg.jpg"
    },
    "Generate_window_walkby_v1": {
     "title": "window_walkby-v1",
@@ -11753,6 +11767,11 @@
       "format": "uri",
       "description": "Called with the outcome when the generation settles."
      },
+     "source_video": {
+      "type": "string",
+      "format": "uri",
+      "description": "A video to lay the voice on — a public https URL."
+     },
      "prompt": {
       "type": "string",
       "description": "The request, in words — required: this workflow cannot run without it."
@@ -11780,22 +11799,19 @@
         ],
         "description": "Voice. Who reads the text.",
         "default": "Ava — female, American, warm and professional"
+       },
+       "mix": {
+        "type": "string",
+        "enum": [
+         "over",
+         "replace"
+        ],
+        "description": "With a video. Only with source_video: over keeps the clip's own sound, lowered, under the voice; replace puts the voice in its place.",
+        "default": "over"
        }
       },
       "additionalProperties": false,
       "description": "The panel's fields, by name."
-     },
-     "ratio": {
-      "type": "string",
-      "enum": [
-       "9:16",
-       "1:1",
-       "3:4",
-       "2:3",
-       "4:3",
-       "3:2"
-      ],
-      "description": "The output format."
      }
     },
     "required": [
