@@ -67,4 +67,7 @@ node scripts/refresh-fixtures.mjs           # take the fixtures again, read the 
 
 It names any route the table cites that the API does not have, any keyed operation the table does not cite, a
 scope that differs, and, in the examples, any workflow, parameter, option or `tnb` flag the platform would refuse.
-The CI blocks on the frozen copy; a daily job runs it live and turns red when the platform has moved.
+The examples are read against the subset of JSON Schema the workflow schemas use (type, const, enum, url format,
+properties, additionalProperties, required, items, minItems, maxItems); any other keyword is reported, never passed.
+`node --test tests/*.test.mjs` proves the checker refuses what it must. The CI blocks on both; a daily job runs the
+check live and turns red when the platform has moved.

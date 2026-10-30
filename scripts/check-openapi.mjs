@@ -84,7 +84,9 @@ if (wrongScope.length) console.log("Scope in SKILL.md differs from the API:\n  "
 if (missing.length) console.log("Keyed in the API, not in SKILL.md:\n  " + missing.join("\n  "));
 if (!unknown.length && !missing.length && !wrongScope.length) console.log(`SKILL.md matches ${api.size} operations of ${url}, scopes included`);
 
-const examples = checkExamples(readFileSync(join(here, "..", "references", "examples.md"), "utf8"), doc, cliHelp);
+/* EXAMPLES_FILE: another examples file, for the tests that prove this very path fails on a bad one. */
+const examplesFile = process.env.EXAMPLES_FILE ?? join(here, "..", "references", "examples.md");
+const examples = checkExamples(readFileSync(examplesFile, "utf8"), doc, cliHelp);
 if (examples.problems.length) console.log("references/examples.md, refused by the platform as it is today:\n  " + examples.problems.join("\n  "));
-else console.log(`references/examples.md: ${examples.checked} calls and command lines, each one the platform accepts`);
+else console.log(`references/examples.md: ${examples.checked} calls and command lines, none refused by the workflow schemas (types, enums, consts, required, item counts, url format) or the CLI's help (commands, arguments, flags)`);
 process.exit(unknown.length || missing.length || wrongScope.length || examples.problems.length ? 1 : 0);

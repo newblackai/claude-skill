@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: The checker refuses what it must (tests/check-examples.test.mjs)
+        run: node --test tests/*.test.mjs
       - run: FIXTURES=1 node scripts/check-openapi.mjs
 
   live:
