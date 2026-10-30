@@ -1,0 +1,48 @@
+tnb 0.3.2 — The New Black AI from the command line. JSON out; --pretty to indent.
+
+  tnb login [--key tnb_live_…]        keep your API key (or set TNB_API_KEY)
+  tnb logout                          forget it
+  tnb whoami                          which account, which key
+
+  tnb workflows [--fresh]             every workflow of the studio, with prices and the catalogue's revision
+  tnb workflows <key>                 one workflow's contract
+  tnb generate <key> --help           the flags of one workflow, read live
+  tnb generate <key> [--<image> file|url …] [--<field> value …] [--prompt …] [--wait] [--out dir/]
+  tnb status <generation_id> [--wait] [--out dir/]
+  tnb upload <file…> [--project id]   pictures → urls and media ids
+
+  tnb credits                                The account's credit balance.
+  tnb account                                The account in one reading: credits, team, projects, library, tech packs, Visual DNA.
+  tnb ledger                                 What the account spent and received (--days 30 --lines 60).
+  tnb invoices                               The account's invoices, newest first, with their page and PDF (--limit 12 --starting_after in_…).
+  tnb brand-dna                              The Visual DNA profiles.
+  tnb brand-dna read <id>                    One Visual DNA profile in full, with its analysis.
+  tnb media                                  The account's creations, newest first (--project <id> --type image|video|3d|audio --search "denim jacket" --since 7d --before <next_before> --before_id <next_before_id>).
+  tnb elements                               The starred pot: creations, presets, uploads.
+  tnb projects                               The account's projects.
+  tnb techpacks                              The tech packs (--project <id>).
+  tnb techpack <id>                          One tech pack whole: pages, sections, data.
+  tnb techpack pdf <id>                      The tech pack as a PDF (a url).
+  tnb techpack rename <id>                   Rename a tech pack (--name).
+  tnb techpack add-section <id>              Add a section to a page (--page <id> --kind header|descriptions|canvas|size_chart|bom|end_notes [--at 0]).
+  tnb techpack write-section <id> <section>  Replace a section's data (--data '<json>' or --data @file.json).
+  tnb techpack from-photos                   Start a tech pack with AI from photos: tnb techpack from-photos front.jpg [back.jpg …] [--back <file>] [--description] [--product] [--size-range XS-XL] [--unit cm|in] [--sketch none|front|front_back] [--project <id>]. 1 credit + 1 per sketch.
+  tnb moodboards                             The moodboards (--project <id>).
+  tnb moodboard pdf <id>                     The moodboard as a PDF (a url).
+  tnb shopify products                       The connected store's products (--search "linen" --limit 50 --offset 50).
+  tnb shopify publish                        Put a creation on a product page (--product <id> --media <media_id> | --url <creation url> [--alt]).
+  tnb publish accounts                       The connected social accounts and the placements each takes.
+  tnb publish                                Post a creation to a connected account (--account <connection_id> --placement <placement> --media <media_id>… [--caption] [--scheduled-at] [--board] [--title] [--link] [--tiktok '<json>']).
+  tnb post <id>                              A post's state: scheduled, posted with its permalink, failed.
+  tnb mila                                   Mila, your AI agent: free or busy, waiting for an answer, what she may do alone.
+  tnb mila send <message>                    Talk to Mila: tnb mila send "message" [--media <media_id>…] [--approve <approval_id> | --decline <approval_id>] [--idempotency-key <yours>].
+  tnb mila thread                            Read Mila's thread (--since <iso date> --limit 50).
+  tnb mila stop                              Stop Mila's running task (--task <task_id> for a specific one).
+  tnb mila schedules                         Mila's calendar.
+  tnb mila schedule <request>                Put a request on Mila's calendar: tnb mila schedule "request" --kind single|recurring --time HH:MM [--date YYYY-MM-DD | --every daily|weekly|monthly --day-of-week 0-6 --day-of-month 1-31] [--may-publish].
+  tnb mila unschedule <schedule>             Take a request off Mila's calendar.
+  tnb files                                  The account's Files (--query <word> --folder <path>).
+  tnb file <id>                              One page of a file, by id or path (--page 1 --sheet <name> --picture <inner name>).
+  tnb file describe <id>                     Write the one-line description of a file (--description).
+
+Keys: https://thenewblack.ai/profile?tab=api · Docs: https://thenewblack.ai/clothing_fashion_api_integrations

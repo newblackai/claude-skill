@@ -1,6 +1,6 @@
 ---
 name: thenewblack
-description: Give any AI agent or codebase the fashion studio of The New Black AI (thenewblack.ai) — 47 workflows that generate and edit fashion images and videos (design, product-to-model, virtual try-on, fabric, sketch, video, HD), read and write the account's creations and tech packs, publish to Shopify and social accounts, and talk to the account's own AI agents — by REST API, by the `tnb` CLI (npx @thenewblack/cli) or by MCP. Use when the user wants to connect a system, store, script, folder of photos or agent to The New Black AI, mentions the TNB API, the tnb CLI, MCP connector, tnb_live keys, or AI fashion generation by API.
+description: Give any AI agent or codebase the fashion studio of The New Black AI (thenewblack.ai) — every workflow of the studio, to generate and edit fashion images and videos (design, product-to-model, virtual try-on, fabric, sketch, video, HD), read and write the account's creations and tech packs, publish to Shopify and social accounts, and talk to the account's own AI agents — by REST API, by the `tnb` CLI (npx @thenewblack/cli) or by MCP. Use when the user wants to connect a system, store, script, folder of photos or agent to The New Black AI, mentions the TNB API, the tnb CLI, MCP connector, tnb_live keys, or AI fashion generation by API.
 ---
 
 # The New Black AI — for agents and integrations

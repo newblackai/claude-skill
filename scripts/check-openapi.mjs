@@ -7,16 +7,27 @@
    This script reads the live document and compares. Run it before
    pushing; the site's own test does the same for its doc page and CLI.
 
-   node scripts/check-openapi.mjs            → against thenewblack.ai
-   OPENAPI_URL=… node scripts/check-openapi.mjs */
+   node scripts/check-openapi.mjs            → against thenewblack.ai (and the CLI npm serves)
+   OPENAPI_URL=… node scripts/check-openapi.mjs
+   FIXTURES=1 node scripts/check-openapi.mjs → against tests/fixtures (the CI's blocking check, no network)
+
+   Since lot L7 it also checks references/examples.md (scripts/check-examples.mjs): every workflow, parameter, option
+   and CLI flag an example uses must be one the platform accepts today. */
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { spawnSync } from "node:child_process";
+import { checkExamples } from "./check-examples.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const url = process.env.OPENAPI_URL ?? "https://thenewblack.ai/api/v1/openapi.json";
-const doc = await (await fetch(url)).json();
+const fixtures = process.env.FIXTURES === "1";
+const url = fixtures ? "tests/fixtures/openapi.json" : process.env.OPENAPI_URL ?? "https://thenewblack.ai/api/v1/openapi.json";
+const doc = fixtures ? JSON.parse(readFileSync(join(here, "..", "tests", "fixtures", "openapi.json"), "utf8")) : await (await fetch(url)).json();
+/* The CLI's help: the frozen copy, or the one npm serves now (it is written on stderr). */
+const cliHelp = fixtures
+  ? readFileSync(join(here, "..", "tests", "fixtures", "cli-help.txt"), "utf8")
+  : (({ stdout, stderr }) => `${stdout ?? ""}${stderr ?? ""}`)(spawnSync("npx", ["-y", "@thenewblack/cli@latest", "help"], { encoding: "utf8" }));
 
 const shape = (p) => p.replace(/\{[^}]+\}/g, "{}").replace(/\/$/, "");
 /* The API's keyed operations: "GET /techpacks/{}". Public ones and the
@@ -72,4 +83,8 @@ if (unknown.length) console.log("Named in SKILL.md, not in the API:\n  " + unkno
 if (wrongScope.length) console.log("Scope in SKILL.md differs from the API:\n  " + wrongScope.join("\n  "));
 if (missing.length) console.log("Keyed in the API, not in SKILL.md:\n  " + missing.join("\n  "));
 if (!unknown.length && !missing.length && !wrongScope.length) console.log(`SKILL.md matches ${api.size} operations of ${url}, scopes included`);
-process.exit(unknown.length || missing.length || wrongScope.length ? 1 : 0);
+
+const examples = checkExamples(readFileSync(join(here, "..", "references", "examples.md"), "utf8"), doc, cliHelp);
+if (examples.problems.length) console.log("references/examples.md, refused by the platform as it is today:\n  " + examples.problems.join("\n  "));
+else console.log(`references/examples.md: ${examples.checked} calls and command lines, each one the platform accepts`);
+process.exit(unknown.length || missing.length || wrongScope.length || examples.problems.length ? 1 : 0);

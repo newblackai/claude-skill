@@ -1,0 +1,41 @@
+name: check
+
+# THE SKILL AGAINST THE PLATFORM (Audit H-516 → H-521, lot L7).
+#   · on every push and PR — BLOCKING: SKILL.md's table (every keyed route, its scope) and every call and command line
+#     of references/examples.md, against the documents frozen in tests/fixtures (scripts/refresh-fixtures.mjs). No
+#     network, no secret.
+#   · once a day — the same check against what production and npm serve NOW. Red in the Actions tab when the platform
+#     has moved; it blocks nothing. Then: refresh the fixtures, read the diff, correct the skill, commit.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "43 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  frozen:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: FIXTURES=1 node scripts/check-openapi.mjs
+
+  live:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-openapi.mjs

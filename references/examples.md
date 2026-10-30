@@ -1,8 +1,9 @@
 # Working examples
 
 Every example assumes `TNB_API_KEY` in the environment. Replace workflow
-names and parameters with what `GET /v1/workflows` returns — these are
-shapes, not contracts.
+names and parameters with what `GET /v1/workflows` returns. Each call below
+is checked against the published contract (`scripts/check-openapi.mjs`):
+a workflow that takes no prompt is given its fields, as in its panel.
 
 ## curl — the whole loop
 
@@ -17,9 +18,9 @@ curl -s -X POST https://thenewblack.ai/api/v1/generate \
   -H "Content-Type: application/json" \
   -d '{
     "workflow": "product_to_model-v1",
-    "prompt": "AI model wearing the handbag, studio light",
-    "ratio": "4:5",
-    "product_images": ["https://example.com/handbag.jpg"]
+    "product_images": ["https://example.com/handbag.jpg"],
+    "fields": { "gender": "Woman", "seg_framing": "full body", "seg_scene": "a white studio, soft light" },
+    "ratio": "4:5"
   }'
 # → { "generation_id": "3f1c9a6e-...", "status": "running", "poll": "/api/v1/generations/3f1c9a6e-..." }
 
@@ -58,9 +59,9 @@ async function waitFor(id) {
 // Results are stored for 48 hours — download and keep your own copy.
 const id = await generate({
   workflow: "product_to_model-v1",
-  prompt: "AI model wearing the handbag, studio light",
-  ratio: "4:5",
   product_images: ["https://example.com/handbag.jpg"],
+  fields: { gender: "Woman", seg_framing: "full body", seg_scene: "a white studio, soft light" },
+  ratio: "4:5",
 });
 const result = await waitFor(id);
 ```
@@ -75,9 +76,9 @@ H = {"Authorization": f"Bearer {os.environ['TNB_API_KEY']}"}
 
 r = requests.post(f"{BASE}/generate", headers=H, json={
     "workflow": "product_to_model-v1",
-    "prompt": "AI model wearing the handbag, studio light",
-    "ratio": "4:5",
     "product_images": ["https://example.com/handbag.jpg"],
+    "fields": {"gender": "Woman", "seg_framing": "full body", "seg_scene": "a white studio, soft light"},
+    "ratio": "4:5",
 })
 r.raise_for_status()
 gen_id = r.json()["generation_id"]
@@ -177,7 +178,7 @@ tnb generate product_to_model --help  # the flags, read live from the catalogue
 # every product photo of a folder on an AI model, saved with a readable name
 for f in ./products/*.jpg; do
   tnb generate product_to_model --product_images "$f" \
-    --prompt "AI model wearing the product, studio light, neutral background" \
+    --gender Woman --seg_scene "a white studio, soft light, neutral background" \
     --ratio 4:5 --wait --out ./renders/
 done
 # → renders/robe-verte-product_to_model.webp beside products/robe-verte.jpg
